@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Carguío y Transporte</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <header>
+        <h1>Registro de Ciclo</h1>
+        <p>Estado: <strong>Offline</strong></p>
+    </header>
+
+    <main>
+        <form id="formulario-simulador">
+            
+            <fieldset>
+                <legend>Datos del Equipo</legend>
+                <label for="capacidad">Capacidad Neta (Toneladas):</label>
+                <input type="number" id="capacidad" name="capacidad" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Tiempos Operativos (Minutos)</legend>
+                
+                <label for="t_carguio">Tiempo de Carguío:</label>
+                <input type="number" id="t_carguio" name="t_carguio" step="0.1" required>
+
+                <label for="t_viaje">Viaje con Carga:</label>
+                <input type="number" id="t_viaje" name="t_viaje" step="0.1" required>
+
+                <label for="t_descarga">Tiempo de Descarga:</label>
+                <input type="number" id="t_descarga" name="t_descarga" step="0.1" required>
+
+                <label for="t_retorno">Retorno Vacío:</label>
+                <input type="number" id="t_retorno" name="t_retorno" step="0.1" required>
+
+                <label for="t_espera">Esperas o Demoras:</label>
+                <input type="number" id="t_espera" name="t_espera" step="0.1" value="0" required>
+            </fieldset>
+
+            <button type="submit" id="btn-calcular">Calcular Productividad</button>
+
+        </form>
+    </main>
+<section id="resultados">
+        <h2>Resultados</h2>
+        <p>Tiempo de Ciclo Total: <span id="res-tiempo-ciclo">--</span> min</p>
+        <p>Productividad Real: <span id="res-productividad">--</span> Ton/h</p>
+    </section>
+
+    <button type="button" id="btn-exportar" style="background-color: #2196F3; margin-top: 20px;">Exportar Turno (CSV)</button>
+
+    <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

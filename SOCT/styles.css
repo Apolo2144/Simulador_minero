@@ -1,0 +1,83 @@
+/* 1. CONFIGURACIÓN GENERAL (Modo Oscuro) */
+body {
+    background-color: #121212; /* Gris muy oscuro, casi negro */
+    color: #e0e0e0; /* Texto gris claro para no cansar la vista */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* 2. ENCABEZADO Y TEXTOS */
+header h1 {
+    color: #ff9800; /* Naranja industrial minero */
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+header p {
+    text-align: center;
+    color: #4caf50; /* Verde brillante para indicar que el sistema está OK */
+    margin-top: 0;
+}
+
+/* 3. CONTENEDORES Y AGRUPACIONES */
+fieldset {
+    border: 2px solid #333;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+legend {
+    font-weight: bold;
+    color: #ff9800;
+    padding: 0 5px;
+}
+
+/* 4. INTERFAZ "A PRUEBA DE DEDOS" (Botones e Inputs grandes) */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+input[type="number"] {
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    padding: 15px; /* Relleno interno gigante para los dedos */
+    margin-bottom: 15px;
+    background-color: #2c2c2c; /* Fondo de la caja de texto oscuro */
+    color: #ffffff; /* Número en blanco brillante */
+    border: 1px solid #555;
+    border-radius: 6px;
+    font-size: 1.2rem; /* Letra grande */
+    box-sizing: border-box; /* Evita que el input se salga de la pantalla */
+}
+
+/* 5. EL BOTÓN PRINCIPAL */
+button {
+    width: 100%;
+    padding: 20px;
+    background-color: #ff9800;
+    color: #000000;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* Efecto al presionar el botón */
+button:active {
+    background-color: #e68a00;
+    transform: scale(0.98);
+}
+
+/* 6. ZONA DE RESULTADOS (Oculta por defecto) */
+#resultados {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-left: 5px solid #ff9800;
+    border-radius: 5px;
+}
