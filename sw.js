@@ -1,10 +1,15 @@
-const CACHE_NAME = 'simulador-minero-v1';
+const CACHE_NAME = 'simulador-minero-v2'; // Cambia el número si ya lo usaste antes
+
+// Agregamos las nuevas imágenes a la lista de descargas obligatorias
 const urlsToCache = [
   './index.html',
   './styles.css',
   './app.js',
-  // También guardamos la librería Dexie para que la base de datos funcione offline
-  'https://unpkg.com/dexie/dist/dexie.js' 
+  './manifest.json', 
+  './icono-192.png',
+  './icono-512.png',
+  './favicon.ico',
+  'https://unpkg.com/dexie/dist/dexie.js'
 ];
 
 // 1. Instalación del Service Worker (Descarga los archivos)
