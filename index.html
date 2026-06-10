@@ -13,7 +13,45 @@
         <h1>Registro de Ciclo</h1>
         <p>Estado: <strong>Offline</strong></p>
     </header>
+<section id="gestion-flota" style="margin-bottom: 40px;">
+        <h2>Gestión de Flota (Camiones)</h2>
+        
+        <form id="form-camion">
+            <fieldset>
+                <legend>Registrar Nuevo Equipo</legend>
+                
+                <label for="c_patente">Patente / ID Interno (Ej: CA-102):</label>
+                <input type="text" id="c_patente" required style="width: 100%; padding: 10px; margin-bottom: 10px; background: #2c2c2c; color: white; border: 1px solid #555;">
 
+                <label for="c_marca">Marca:</label>
+                <input type="text" id="c_marca" required style="width: 100%; padding: 10px; margin-bottom: 10px; background: #2c2c2c; color: white; border: 1px solid #555;">
+
+                <label for="c_modelo">Modelo:</label>
+                <input type="text" id="c_modelo" required style="width: 100%; padding: 10px; margin-bottom: 10px; background: #2c2c2c; color: white; border: 1px solid #555;">
+
+                <label for="c_capacidad">Capacidad Nominal (Toneladas):</label>
+                <input type="number" id="c_capacidad" required style="width: 100%; padding: 10px; margin-bottom: 15px; background: #2c2c2c; color: white; border: 1px solid #555;">
+
+                <button type="submit" style="background-color: #4caf50; padding: 15px;">Añadir Camión a la Flota</button>
+            </fieldset>
+        </form>
+
+        <div style="overflow-x: auto; margin-top: 20px;">
+            <table id="tabla-camiones">
+                <thead>
+                    <tr>
+                        <th>ID / Patente</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Capacidad (t)</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-camiones">
+                    </tbody>
+            </table>
+        </div>
+    </section>
     <main>
         <form id="formulario-simulador">
             

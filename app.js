@@ -1,12 +1,12 @@
 // 1. Inicializar la Base de Datos Local
 const db = new Dexie('SimuladorMineroDB');
 
-// 2. Definir la estructura de la "tabla" (Store)
-// El '++id' funciona exactamente igual que un PRIMARY KEY AUTO_INCREMENT
-db.version(1).stores({
-    ciclos: '++id, capacidad, tiempoCiclo, productividad, fecha' 
+// Versión 2: Agregamos la tabla de camiones
+// Usamos 'patente' (o ID interno) como llave primaria única, no puede haber dos iguales
+db.version(2).stores({
+    ciclos: '++id, capacidad, tiempoCiclo, productividad, fecha',
+    camiones: 'patente, marca, modelo, capacidad' 
 });
-
 
 // 1. Escuchar el evento cuando el operador presiona "Calcular Productividad"
 document.getElementById('formulario-simulador').addEventListener('submit', function(evento) {
@@ -108,3 +108,68 @@ document.getElementById('btn-exportar').addEventListener('click', function() {
     });
 });
 }
+// =====================================================================
+// LÓGICA DE GESTIÓN DE FLOTA (CAMIONES)
+// =====================================================================
+
+// 1. Función para cargar y mostrar los camiones en la tabla
+function cargarCamiones() {
+    let listaHTML = document.getElementById('lista-camiones');
+    listaHTML.innerHTML = ''; // Limpiamos la tabla antes de rellenarla
+
+    // Leemos todos los camiones de la base de datos
+    db.camiones.toArray().then(function(camiones) {
+        camiones.forEach(function(camion) {
+            // Creamos una fila por cada camión
+            let fila = `
+                <tr>
+                    <td><strong>${camion.patente}</strong></td>
+                    <td>${camion.marca}</td>
+                    <td>${camion.modelo}</td>
+                    <td>${camion.capacidad} t</td>
+                    <td><button class="btn-eliminar" onclick="eliminarCamion('${camion.patente}')">Eliminar</button></td>
+                </tr>
+            `;
+            listaHTML.innerHTML += fila;
+        });
+    });
+}
+
+// 2. Evento para guardar un nuevo camión
+document.getElementById('form-camion').addEventListener('submit', function(evento) {
+    evento.preventDefault();
+
+    // Capturamos los datos
+    let patente = document.getElementById('c_patente').value.toUpperCase(); // Forzamos mayúsculas
+    let marca = document.getElementById('c_marca').value;
+    let modelo = document.getElementById('c_modelo').value;
+    let capacidad = parseFloat(document.getElementById('c_capacidad').value);
+
+    // Guardamos en Dexie. Usamos .put() para que si la patente ya existe, la actualice en lugar de dar error.
+    db.camiones.put({
+        patente: patente,
+        marca: marca,
+        modelo: modelo,
+        capacidad: capacidad
+    }).then(() => {
+        // Limpiamos el formulario y recargamos la tabla
+        document.getElementById('form-camion').reset();
+        cargarCamiones();
+    }).catch(error => {
+        console.error("Error al guardar camión:", error);
+    });
+});
+
+// 3. Función para eliminar un camión (llamada desde el botón rojo de la tabla)
+function eliminarCamion(patente) {
+    if(confirm(`¿Estás seguro de eliminar el camión ${patente}?`)) {
+        db.camiones.delete(patente).then(() => {
+            cargarCamiones(); // Recargamos la tabla tras borrar
+        });
+    }
+}
+
+// 4. Ejecutamos la carga de camiones apenas se abre la aplicación
+window.addEventListener('load', () => {
+    cargarCamiones();
+});

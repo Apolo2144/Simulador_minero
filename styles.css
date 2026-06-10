@@ -81,3 +81,41 @@ button:active {
     border-left: 5px solid #ff9800;
     border-radius: 5px;
 }
+/* 7. ESTILOS DE LA TABLA DE FLOTA */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1e1e1e;
+    color: #fff;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    background-color: #2c2c2c;
+    color: #ff9800;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #333;
+}
+
+.btn-eliminar {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    width: auto;
+}
+
+.btn-eliminar:active {
+    transform: scale(0.95);
+}
